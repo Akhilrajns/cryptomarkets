@@ -1,11 +1,19 @@
-from fastapi import FastAPI, Request, Depends
+from fastapi import FastAPI, Depends, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-
+import logging
+import os
 from core.config import config
 from core.exceptions import CustomException
 from core.fastapi.dependencies import Logging
 from api import router
+
+log_path = os.getcwd()
+logging.config.fileConfig(
+    'logging.conf',
+    disable_existing_loggers=False,
+    defaults={'logfilename': f"{log_path}/app.log"}
+)
 
 
 def init_cors(app: FastAPI) -> None:

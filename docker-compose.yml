@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  cryptomarkets:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - API_KEY=<API_KEY>
+      - SECRET_KEY=<SECRET_KEY>
+      - APP_HOST=0.0.0.0
+      - APP_PORT=8000
+    volumes:
+      - shared-volume:/data
+volumes:
+  shared-volume:
+    driver: local
