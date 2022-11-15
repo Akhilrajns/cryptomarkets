@@ -1,11 +1,18 @@
 import os
 from pydantic import BaseSettings
+from dotenv import load_dotenv
+
+env_file = os.path.join(os.getcwd(), '.env')
+if env_file:
+    load_dotenv(env_file)
 
 
 class Config(BaseSettings):
-    ENV: str = "development"
-    APP_HOST: str = "0.0.0.0"
-    APP_PORT: int = 8000
+    ENV: str = os.getenv("ENV", "development")
+    APP_HOST: str = str(os.getenv('APP_HOST'))
+    APP_PORT: int = int(os.getenv('APP_PORT'))
+    API_KEY: str = str(os.getenv('API_KEY'))
+    SECRET_KEY: str = str(os.getenv('SECRET_KEY'))
 
 
 class DevelopmentConfig(Config):
