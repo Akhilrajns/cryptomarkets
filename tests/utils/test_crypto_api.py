@@ -20,15 +20,19 @@ async def test_bittrex_api(mocker):
         "percentChange": "1.80",
         "updatedAt": "2022-11-15T14:59:17.217Z"
     }]
+
     def res():
         r = requests.Response()
         r.status_code = 200
+
         def json_func():
             return response
         r.json = json_func
         return r
     mocker.return_value = res()
-    org_response = await BittrexAPI().get(url='http://test.com', headers={})
+    org_response = await BittrexAPI().get(
+        url='http://test.com', headers={}
+    )
     assert org_response == response
 
 
@@ -39,13 +43,17 @@ async def test_bittrex_api_with_exception(mocker):
         Test the BittrexAPI get method
     """
     response = {'code': 'API_FAILED'}
+
     def res():
         r = requests.Response()
         r.status_code = 400
+
         def json_func():
             return response
         r.json = json_func
         return r
     mocker.return_value = res()
-    with pytest.raises(BadRequestException) as e_info:
-        org_response = await BittrexAPI().get(url='http://test.com', headers={})
+    with pytest.raises(BadRequestException):
+        await BittrexAPI().get(
+            url='http://test.com', headers={}
+        )

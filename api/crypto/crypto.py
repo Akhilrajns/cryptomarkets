@@ -18,4 +18,6 @@ async def summaries(crypto_req: CryptoRequests = Depends()):
     """
         API to fetch the summaries and markets details based on market name
     """
-    return await CryptoService().get_market_summary_and_details(crypto_req.market)
+    return await CryptoService().get_market_summary_and_details(
+        crypto_req.market
+    )
