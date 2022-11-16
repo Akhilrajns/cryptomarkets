@@ -46,3 +46,6 @@ To generate the HTML reports of coverage
 ```
     python -m coverage html
 ```
+# Swagger URL:
+
+You will be able to view the swagger [URL](http://localhost:8000/docs) http://0.0.0.0:8000/docs
