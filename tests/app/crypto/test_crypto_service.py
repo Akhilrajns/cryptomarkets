@@ -1,5 +1,4 @@
 import pytest
-
 from app.crypto.service.crypto import CryptoService
 
 
@@ -24,6 +23,7 @@ async def test_get_all_markets_summary(mocker):
     org_response = await CryptoService()\
         .get_market_summary_and_details(market='')
     assert 1 == len(org_response.get('data'))
+
 
 @pytest.mark.asyncio
 async def test_to_fetch_market_details(mocker):
