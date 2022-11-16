@@ -23,7 +23,7 @@ Install all the required packages for application
     python -m pip install -r requirements.txt
 ```
 
-Install all the required packages for development/testing
+Install all the required packages for development with testing and linting packages
 
 ```
     python -m pip install -r requirement-dev.txt
@@ -35,8 +35,14 @@ To start the application
 ```
     python -m main.py
 ```
-To run the unit tests
+
+To run the unit tests with coverage
 
 ```
-    $ pytest
+    $ python -m coverage run -m pytest tests
+```
+
+To generate the HTML reports of coverage
+```
+    python -m coverage html
 ```
