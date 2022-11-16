@@ -45,21 +45,7 @@ class BittrexAPI(API):
         """
             # TODO This method is not complete
         """
-        try:
-            headers = await self.generate_headers(url=url)
-            result = requests.post(url=url, data=data, headers=headers)
-            if result.status_code == status.HTTP_200_OK:
-                return result.json()
-            else:
-                raise BadRequestException(
-                    message=result.json().get('code', '')
-                )
-        except Exception as error:
-            message = error.message if isinstance(
-                error, BadRequestException
-            ) else str(error)
-            logger.info(f"API raised error: {message}")
-            raise BadRequestException(message=message)
+        pass
 
     async def generate_headers(self, url: str):
         """

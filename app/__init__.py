@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-import logging
+from logging import config as LogConfig
 import os
 from core.config import config
 from core.exceptions import CustomException
@@ -9,7 +9,7 @@ from core.fastapi.dependencies import Logging
 from api import router
 
 log_path = os.getcwd()
-logging.config.fileConfig(
+LogConfig.fileConfig(
     'logging.conf',
     disable_existing_loggers=False,
     defaults={'logfilename': f"{log_path}/app.log"}
